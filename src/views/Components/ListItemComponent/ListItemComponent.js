@@ -10,7 +10,6 @@ export default function ListItemComponent({data, favoriteList, setFavoriteList})
 
     const addToFavt = (item) => {
         const isAlreadyInList = favoriteList.filter(data => data._id === item._id);
-        console.log(isAlreadyInList) 
         if (isAlreadyInList.length > 0) {
             toast.warning("Already added to the favorite list!")
         } else {
@@ -18,6 +17,7 @@ export default function ListItemComponent({data, favoriteList, setFavoriteList})
                 ...favoriteList,
                 item
             ]);
+            localStorage.setItem("favorite-author", JSON.stringify([...favoriteList, item]))
             toast.success("Added to the favorite list")
         }
     }
@@ -25,7 +25,8 @@ export default function ListItemComponent({data, favoriteList, setFavoriteList})
     const removeFavt = (item) => {
        const removedItem = favoriteList.filter(data => data._id !== item._id);
        setFavoriteList(removedItem);
-       toast.success("Removed from favorite list!")
+       localStorage.setItem("favorite-author", JSON.stringify(removedItem))
+       toast.success("Removed from favorite list!");
     }
 
   return (

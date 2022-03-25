@@ -30,7 +30,8 @@ export default function Authors() {
       }, [skip]);
 
       useEffect(() => {
-         localStorage.setItem("favorite-author", JSON.stringify(favoriteList))
+        //  localStorage.setItem("favorite-author", JSON.stringify(favoriteList))
+         console.log("setItem")
       },[favoriteList])
 
       const previousPage = () => {
