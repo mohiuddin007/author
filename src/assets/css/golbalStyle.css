@@ -1,0 +1,13 @@
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.horizontalRootMrgn{
+    margin-right: 15px !important;
+    margin-left: -10px !important;
+}
+
+.primaryBg{
+    background: #FFFFFF;
+}

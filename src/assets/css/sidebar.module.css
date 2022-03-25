@@ -1,0 +1,23 @@
+.sidebarWrapper{
+    background: rgb(238, 238, 238);
+    border-right: 2px solid rgb(94, 94, 94);
+    height: 100vh;
+    padding: 50px 20px;
+    position: fixed;
+}
+
+.sidebarBtn{
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background: #fff;
+    margin: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 16px 20px;
+    cursor: pointer;
+}
+
+.navLink{
+    text-decoration: none;
+    color: inherit;
+}
