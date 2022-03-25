@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import styles from "../../../assets/css/author.module.css";
 import { AllContextData } from '../../../context';
@@ -8,17 +8,19 @@ import ListItemComponent from '../../Components/ListItemComponent/ListItemCompon
 export default function Authors() {
     const {favoriteList, setFavoriteList} = useContext(AllContextData);
     const [allAuthors, setAllAuthors] = useState([]);
-    const [pagination, setPagination] = useState(10);
+    const [page, setPage] = useState(1);
     const [skip, setSkip] = useState(0);
 
     useEffect(() => {
         (async () => {
           try {
             const dataFetched = await import("../../../services/author.service").then(
-              async (service) => await service.getAuthors({})
+              async (service) => await service.getAuthors({skipItem: skip})
             );
             if (dataFetched.status === 200) {
               setAllAuthors(dataFetched.data.results);
+              setPage(dataFetched.data.page)
+              console.log(dataFetched.data)
             } else {
               toast.warning("Something went wrong!")
             }
@@ -26,11 +28,19 @@ export default function Authors() {
             console.log(error);
           }
         })();
-      }, []);
+      }, [skip]);
 
       useEffect(() => {
          localStorage.setItem("favorite-author", JSON.stringify(favoriteList))
       },[favoriteList])
+
+      const previousPage = () => {
+        if (skip >= 10) {
+          setSkip(skip - 10)
+        } else {
+          toast.error("There is no previous page")
+        }
+      }
 
   return (
     <div className={`primaryBg ${styles.author}`}>
@@ -46,7 +56,14 @@ export default function Authors() {
           ))
         }
        </Row>
-     
+      <div className={styles.pagination}>
+        <Button variant="primary" onClick={() => previousPage()}>Previous Page</Button>
+        <div className='p-2 mx-2 bg-light border rounded'>
+          Page no: {page}
+        </div>
+        <Button variant="primary" onClick={() => setSkip(skip + 10)}>Next Page</Button>
+        
+      </div>
     </div>
   )
 }
