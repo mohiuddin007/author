@@ -17,21 +17,23 @@ export default function ListItemComponent({data, favoriteList, setFavoriteList})
             setFavoriteList([
                 ...favoriteList,
                 item
-            ])
+            ]);
+            toast.success("Added to the favorite list")
         }
     }
 
     const removeFavt = (item) => {
        const removedItem = favoriteList.filter(data => data._id !== item._id);
-       setFavoriteList(removedItem)
+       setFavoriteList(removedItem);
+       toast.success("Removed from favorite list!")
     }
 
   return (
     <Col md={6}>
-      <Card style={{height: "16rem", marginBottom: "24px"}}>
+      <Card style={{marginBottom: "24px"}}>
         <Card.Body>
             <Card.Title>Name:{data.name}</Card.Title>
-            <Card.Text>
+            <Card.Text style={{height: "145px", overflow: "hidden"}}>
              Bio: {data.bio}
             </Card.Text>
             <div className="d-flex justify-content-between">

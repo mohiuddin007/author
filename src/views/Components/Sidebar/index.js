@@ -11,16 +11,18 @@ export default function Sidebar() {
         <Link to="/authors" className={styles.navLink}>
             <h3 className='mb-5 text-center'>Author Management</h3>
         </Link>
+        <Link to="/authors" className={styles.navLink}>
         <div className={styles.sidebarBtn}>
-          <Link to="/authors" className={styles.navLink}>
              <span><FaUsers/> Authors</span>
-          </Link>
         </div>
+        </Link>
+
+        <Link to="/favorite-authors" className={styles.navLink}>
         <div className={styles.sidebarBtn}>
-          <Link to="/favorite-authors" className={styles.navLink}>
             <span><MdFavorite/> Favorite Authors</span>
-          </Link>
         </div>
+        </Link>
+
     </div>
   )
 }

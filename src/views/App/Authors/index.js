@@ -19,8 +19,7 @@ export default function Authors() {
             );
             if (dataFetched.status === 200) {
               setAllAuthors(dataFetched.data.results);
-              setPage(dataFetched.data.page)
-              console.log(dataFetched.data)
+              setPage(dataFetched.data.page);
             } else {
               toast.warning("Something went wrong!")
             }
