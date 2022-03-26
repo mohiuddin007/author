@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function Sidebar() {
+
   return (
     <div className={styles.sidebarWrapper}>
         <Link to="/authors" className={styles.navLink}>
@@ -22,7 +23,6 @@ export default function Sidebar() {
             <span><MdFavorite/> Favorite Authors</span>
         </div>
         </Link>
-
     </div>
   )
 }

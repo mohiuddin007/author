@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import styles from "../../../assets/css/author.module.css";
-import { AllContextData } from '../../../context';
 import ListItemComponent from '../../Components/ListItemComponent/ListItemComponent';
 
 export default function Authors() {
-    const {favoriteList, setFavoriteList} = useContext(AllContextData);
     const [allAuthors, setAllAuthors] = useState([]);
     const [page, setPage] = useState(1);
     const [skip, setSkip] = useState(0);
@@ -20,8 +18,6 @@ export default function Authors() {
             if (dataFetched.status === 200) {
               setAllAuthors(dataFetched.data.results);
               setPage(dataFetched.data.page);
-            } else {
-              toast.warning("Something went wrong!")
             }
           } catch (error) {
             console.log(error);
@@ -29,10 +25,6 @@ export default function Authors() {
         })();
       }, [skip]);
 
-      useEffect(() => {
-        //  localStorage.setItem("favorite-author", JSON.stringify(favoriteList))
-         console.log("setItem")
-      },[favoriteList])
 
       const previousPage = () => {
         if (skip >= 10) {
@@ -51,8 +43,7 @@ export default function Authors() {
               <ListItemComponent 
               key={data._id} 
               data={data} 
-              favoriteList={favoriteList}
-              setFavoriteList={setFavoriteList}/>
+              />
           ))
         }
        </Row>
