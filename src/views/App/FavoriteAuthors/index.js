@@ -1,13 +1,18 @@
-import React, { useContext } from 'react'
+import React, { Suspense, useContext } from 'react'
 import { Row } from 'react-bootstrap';
 import { AllContextData } from '../../../context';
-import ListItemComponent from '../../Components/ListItemComponent/ListItemComponent'
+
+//lazy load component
+const ListItemComponent = React.lazy(() => import("../../Components/ListItemComponent/ListItemComponent"));
+
 
 export default function FavoriteAuthors() {
   const {favoriteList} = useContext(AllContextData);
+  
 
   return (
     <div className="primaryBg" style={{paddingTop: "50px"}}>
+      <Suspense fallback={<div>Loading...</div>}>
        <h3 className='mb-5 ms-3'>Your Favorite Authors</h3>
        <Row>
         {
@@ -21,6 +26,7 @@ export default function FavoriteAuthors() {
           )
         }
        </Row>
+      </Suspense>
     </div>
   )
 }
