@@ -2,7 +2,16 @@
     background: rgb(238, 238, 238);
     border-right: 2px solid rgb(94, 94, 94);
     height: 100vh;
-    padding: 50px 20px;
+    padding: 28px 20px;
+    position: fixed;
+}
+
+.collapsedSidebarWrapper{
+    background: rgb(238, 238, 238);
+    border-right: 2px solid rgb(94, 94, 94);
+    height: 100vh;
+    padding: 28px 10px;
+    width: 200px;
     position: fixed;
 }
 
@@ -20,4 +29,17 @@
 .navLink{
     text-decoration: none;
     color: inherit;
+}
+
+@media screen and (max-width: 746px){
+    .sidebarWrapper{
+        height: 100vh;
+        padding: 28px 20px;
+        position: fixed;
+        z-index: 10;
+    }
+    
+    .collapsedSidebarWrapper{
+        display: none;
+    }
 }
